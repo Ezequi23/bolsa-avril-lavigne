@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bastidores — ROCK XOXO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Caveat:wght@400;700&family=Bebas+Neue&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --pink:   #FF0099;
+  --green:  #39FF14;
+  --silver: #C8C8C8;
+  --black:  #080808;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  overflow-x: hidden;
+}
+
+body::after {
+  content:'';
+  position:fixed; inset:0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");
+  pointer-events:none; z-index:9999; opacity:.5;
+}
+
+/* ── BANDA XADREZ ── */
+.plaid-band {
+  width:100%; height:22px;
+  background:
+    repeating-linear-gradient(90deg,
+      #FF0099 0,#FF0099 2px,transparent 2px,transparent 18px,
+      #FF0099 18px,#FF0099 20px,transparent 20px,transparent 38px),
+    repeating-linear-gradient(90deg,
+      #CC0022 0,#CC0022 1px,transparent 1px,transparent 10px,
+      #CC0022 10px,#CC0022 11px,transparent 11px,transparent 20px),
+    #1a0a0a;
+}
+
+/* ── HERO VÍDEO FULLSCREEN ── */
+.video-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+/* overlay escurecido para legibilidade dos textos */
+.video-hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,.25) 0%,
+    rgba(0,0,0,.1)  50%,
+    rgba(0,0,0,.7)  100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* iframe do YouTube esticado para cobrir tudo */
+.video-hero iframe {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 177.78vh;   /* 16:9 baseado na altura */
+  height: 100vh;
+  min-width: 100%;
+  min-height: 56.25vw; /* 16:9 baseado na largura */
+  border: none;
+  pointer-events: none; /* impede pausa acidental */
+}
+
+/* textos sobre o vídeo */
+.video-overlay {
+  position: absolute; inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 3rem 4rem;
+}
+
+.video-eyebrow {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem;
+  color: var(--pink);
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+.video-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(2.5rem, 7vw, 6rem);
+  line-height: .95;
+  color: #fff;
+  text-shadow: 0 2px 20px rgba(0,0,0,.8);
+}
+.video-title span { color: var(--pink); }
+
+.video-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 1.2rem;
+  color: rgba(255,255,255,.6);
+  margin-top: .75rem;
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 2rem; left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  cursor: pointer;
+  opacity: .7;
+  transition: opacity .3s;
+}
+.scroll-hint:hover { opacity: 1; }
+.scroll-hint span {
+  font-family: 'Caveat', cursive;
+  font-size: .85rem;
+  color: #fff;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+.scroll-arrow {
+  width: 20px; height: 20px;
+  border-right: 2px solid var(--pink);
+  border-bottom: 2px solid var(--pink);
+  transform: rotate(45deg);
+  animation: bounce 1.5s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: rotate(45deg) translateY(0); }
+  50%      { transform: rotate(45deg) translateY(6px); }
+}
+
+/* ── SEÇÃO MELHORES MOMENTOS ── */
+.momentos {
+  background: linear-gradient(160deg, #1a0a2e 0%, #0a0808 100%);
+  padding: 5rem 0 4rem;
+}
+
+.momentos-head {
+  padding: 0 3rem 3rem;
+  position: relative;
+}
+.momentos-label {
+  font-family: 'Caveat', cursive;
+  font-size: 1rem; color: var(--pink);
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: .5rem;
+}
+.momentos-label::before {
+  content: ''; display: inline-block;
+  width: 30px; height: 2px; background: var(--pink);
+}
+.momentos-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1.05;
+}
+.momentos-sub {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem; color: rgba(255,255,255,.45);
+  margin-top: .5rem;
+}
+
+/* ── CARROSSEL MOMENTOS ── */
+.carousel-wrap {
+  position: relative;
+  padding: 0 3rem 2.5rem;
+  user-select: none;
+}
+
+.carousel { overflow: hidden; width: 100%; }
+
+.carousel-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  flex: 0 0 calc(33.333% - 1rem);
+  min-width: 0;
+}
+
+.polaroid-c {
+  background: #fff;
+  padding: 10px 10px 38px;
+  box-shadow: 0 6px 24px rgba(0,0,0,.7), 0 1px 4px rgba(0,0,0,.4);
+  cursor: pointer;
+  transition: transform .3s ease, box-shadow .3s ease;
+  position: relative;
+  height: 300px;
+}
+.polaroid-c:hover {
+  transform: scale(1.04) rotate(0deg) !important;
+  box-shadow: 0 16px 48px rgba(0,0,0,.85);
+  z-index: 10;
+}
+.polaroid-c img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  background: #111;
+  display: block;
+}
+.polaroid-c span {
+  position: absolute; bottom: 7px; left: 0; right: 0;
+  text-align: center;
+  font-family: 'Permanent Marker', cursive;
+  font-size: .65rem; color: #222;
+  padding: 0 8px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+.carousel-slide:nth-child(odd)  .polaroid-c { transform: rotate(-1.5deg); }
+.carousel-slide:nth-child(even) .polaroid-c { transform: rotate(1.8deg); }
+.carousel-slide:nth-child(3n)   .polaroid-c { transform: rotate(-2.5deg); }
+
+/* botões */
+.carousel-btn {
+  position: absolute; top: 50%; transform: translateY(-60%);
+  background: var(--pink); border: none; color: #fff;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.4rem; width: 42px; height: 42px;
+  cursor: pointer; z-index: 10;
+  transition: background .2s, transform .2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.carousel-btn:hover { background: #cc007a; transform: translateY(-60%) scale(1.1); }
+.carousel-btn.prev { left: .5rem; }
+.carousel-btn.next { right: .5rem; }
+
+/* dots */
+.carousel-dots {
+  display: flex; justify-content: center; gap: .5rem;
+  margin-top: 1.2rem;
+}
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(255,255,255,.2);
+  cursor: pointer;
+  transition: background .3s, transform .3s;
+  border: none;
+}
+.carousel-dot.active { background: var(--pink); transform: scale(1.3); }
+
+/* ── DOODLES DECORATIVOS ── */
+.doodle-row {
+  display: flex; align-items: center; gap: 1.5rem;
+  padding: 1rem 3rem;
+  flex-wrap: wrap;
+}
+.note {
+  font-family: 'Caveat', cursive;
+  font-size: 1.1rem; line-height: 1.3;
+}
+.note.pink   { color: var(--pink); }
+.note.green  { color: var(--green); }
+.note.silver { color: var(--silver); }
+
+/* ── BOTÃO VOLTAR ── */
+.back-section {
+  text-align: center;
+  padding: 4rem 2rem 5rem;
+  background: #0a0808;
+}
+.btn-back {
+  display: inline-block;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.1rem; letter-spacing: .1em;
+  color: var(--pink); text-decoration: none;
+  border: 2px solid var(--pink);
+  padding: .8rem 2.2rem;
+  transition: all .3s;
+}
+.btn-back:hover {
+  background: var(--pink); color: #fff;
+  box-shadow: 0 0 24px rgba(255,0,153,.5);
+  transform: scale(1.04);
+}
+
+/* ── FOOTER ── */
+footer {
+  padding: 2.5rem; text-align: center;
+  border-top: 1px solid rgba(255,255,255,.06);
+  background: #0a0808;
+}
+.footer-title {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 1.3rem; color: var(--pink); letter-spacing: .2em;
+}
+.footer-sub {
+  font-family: 'Caveat', cursive;
+  font-size: .95rem; color: rgba(255,255,255,.2); margin-top: .4rem;
+}
+
+@keyframes flicker {
+  0%,93%,97%,100% { opacity:1; }
+  95% { opacity:.3; }
+}
+.flicker { animation: flicker 7s infinite; }
+
+/* ── LIGHTBOX ── */
+.lb { display:none; position:fixed; inset:0; background:rgba(0,0,0,.97); z-index:9000; align-items:center; justify-content:center; }
+.lb.open { display:flex; }
+.lb img  { max-width:90vw; max-height:90vh; object-fit:contain; }
+.lb-close {
+  position:absolute; top:1.5rem; right:2rem;
+  font-family:'Permanent Marker',cursive; font-size:2.5rem;
+  color:#fff; background:none; border:none; cursor:pointer;
+}
+
+
+/* ── BOTÃO SOM ── */
+.sound-btn {
+  position: absolute;
+  bottom: 5rem;
+  right: 2.5rem;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  background: rgba(0,0,0,.55);
+  border: 1.5px solid rgba(255,0,153,.6);
+  color: #fff;
+  font-family: 'Permanent Marker', cursive;
+  font-size: .85rem;
+  letter-spacing: .08em;
+  padding: .55rem 1.1rem;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background .25s, border-color .25s, transform .2s;
+  user-select: none;
+}
+.sound-btn:hover {
+  background: rgba(255,0,153,.25);
+  border-color: var(--pink);
+  transform: scale(1.05);
+}
+.sound-btn .sound-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+  transition: transform .3s;
+}
+.sound-btn.unmuted {
+  border-color: var(--green);
+  box-shadow: 0 0 12px rgba(57,255,20,.3);
+}
+
+/* ── RESPONSIVO ── */
+@media(max-width:900px) {
+  .carousel-slide { flex: 0 0 calc(50% - .75rem); }
+}
+@media(max-width:600px) {
+  .carousel-slide { flex: 0 0 100%; }
+  .video-overlay { padding: 2rem 1.5rem; }
+  .carousel-wrap, .doodle-row, .momentos-head { padding-left:1.5rem; padding-right:1.5rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══ BANDA TOPO ══ -->
+<div class="plaid-band"></div>
+
+<!-- ══ VÍDEO HERO FULLSCREEN ══ -->
+<section class="video-hero">
+  <!--
+    YouTube embed com parâmetros:
+    autoplay=1  — inicia automaticamente
+    loop=1      — loop infinito
+    mute=1      — mudo (obrigatório para autoplay funcionar no browser)
+    controls=0  — sem controles visíveis
+    playlist=JSUgJXq0J9o — necessário para o loop funcionar
+    modestbranding=1 — sem logo grande do YouTube
+    rel=0       — sem vídeos relacionados
+    playsinline=1 — mobile não abre fullscreen nativo
+  -->
+  <!-- YouTube IFrame API: permite controlar mute via JS -->
+  <div id="yt-player"></div>
+
+  <!-- Botão de som encaixado no vídeo -->
+  <button class="sound-btn" id="sound-btn" onclick="toggleSound()">
+    <span class="sound-icon" id="sound-icon">🔇</span>
+    <span id="sound-label">ativar som</span>
+  </button>
+
+  <div class="video-overlay">
+    <p class="video-eyebrow">bastidores · processo criativo</p>
+    <h1 class="video-title flicker">POR TRÁS<br>DA <span>BOLSA</span></h1>
+    <p class="video-sub">costura, montagem, erros e acertos — tudo que você não viu</p>
+  </div>
+
+  <div class="scroll-hint" onclick="document.getElementById('momentos').scrollIntoView({behavior:'smooth'})">
+    <span>melhores momentos</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<div class="plaid-band"></div>
+
+<!-- ══ MELHORES MOMENTOS ══ -->
+<section class="momentos" id="momentos">
+
+  <div class="momentos-head">
+    <p class="momentos-label">registro</p>
+    <h2 class="momentos-title">Melhores<br>Momentos</h2>
+    <p class="momentos-sub">o grupo, a criação, a energia — frames que ficam</p>
+  </div>
+
+  <div class="doodle-row">
+    <div class="note pink" style="transform:rotate(-3deg)">★ feito com amor</div>
+    <svg width="55" height="55" viewBox="0 0 70 70" style="opacity:.6"><polygon points="35,5 42,26 65,26 47,40 53,62 35,48 17,62 23,40 5,26 28,26" fill="none" stroke="#FF0099" stroke-width="2.5"/></svg>
+    <div class="note green" style="transform:rotate(4deg)">processo DIY ✂</div>
+    <svg width="28" height="48" viewBox="0 0 30 50" style="opacity:.5"><path d="M18,2 L8,28 L16,28 L10,48 L24,20 L16,20Z" fill="none" stroke="#39FF14" stroke-width="2"/></svg>
+    <div class="note silver" style="transform:rotate(-2deg)">anos 2000 vibes</div>
+  </div>
+
+  <div class="carousel-wrap">
+    <button class="carousel-btn prev" onclick="moveMom(-1)">&#8592;</button>
+    <div class="carousel" id="carousel-mom">
+      <div class="carousel-track" id="track-mom">
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-01.jpg" alt="Momento 1"><span>bastidores ★</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-02.jpg" alt="Momento 2"><span>processo ✂</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-03.jpg" alt="Momento 3"><span>criação ♡</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-04.jpg" alt="Momento 4"><span>detalhe ✦</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-05.jpg" alt="Momento 5"><span>montagem ⛓</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-06.jpg" alt="Momento 6"><span>o grupo ★</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-07.jpg" alt="Momento 7"><span>bastidores ♪</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-08.jpg" alt="Momento 8"><span>making of ✧</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-09.jpg" alt="Momento 9"><span>punk vibes ★</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-10.jpg" alt="Momento 10"><span>finalização ♡</span></div></div>
+        <div class="carousel-slide"><div class="polaroid-c"><img src="img/momentos/momento-11.jpg" alt="Momento 11"><span>resultado ✦</span></div></div>
+      </div>
+    </div>
+    <button class="carousel-btn next" onclick="moveMom(1)">&#8594;</button>
+    <div class="carousel-dots" id="dots-mom"></div>
+  </div>
+
+</section>
+
+<div class="plaid-band"></div>
+
+<!-- ══ VOLTAR ══ -->
+<div class="back-section">
+  <p style="font-family:'Caveat',cursive;font-size:1.1rem;color:rgba(255,255,255,.4);margin-bottom:1.5rem">voltou para ver as bolsas?</p>
+  <a href="index.html" class="btn-back">← voltar para o site</a>
+</div>
+
+<footer>
+  <p class="footer-title flicker">★ ROCK XOXO ★</p>
+  <p class="footer-sub">Sk8er & Fallen · bastidores · 2025</p>
+</footer>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img id="lb-img" src="" alt="">
+</div>
+
+<script>
+// ── CARROSSEL ──────────────────────
+let current = 0;
+let timer   = null;
+
+function visibleCount() {
+  if (window.innerWidth < 600) return 1;
+  if (window.innerWidth < 900) return 2;
+  return 3;
+}
+
+const track = document.getElementById('track-mom');
+const slides = track.querySelectorAll('.carousel-slide');
+const total  = slides.length;
+const dotsWrap = document.getElementById('dots-mom');
+const dots = [];
+
+// criar dots
+for (let i = 0; i < total; i++) {
+  const d = document.createElement('button');
+  d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+  d.addEventListener('click', () => goTo(i));
+  dotsWrap.appendChild(d);
+  dots.push(d);
+}
+
+function goTo(index) {
+  const vis  = visibleCount();
+  const max  = total - vis;
+  current    = ((index % (max + 1)) + (max + 1)) % (max + 1);
+  const slideW = slides[0].offsetWidth;
+  const gap    = 24;
+  track.style.transform = `translateX(-${current * (slideW + gap)}px)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+function next() { goTo(current + 1); }
+function prev() { goTo(current - 1); }
+function moveMom(dir) { dir === 1 ? next() : prev(); }
+
+function startAuto() { timer = setInterval(next, 3000); }
+function stopAuto()  { clearInterval(timer); }
+
+const carWrap = document.getElementById('carousel-mom');
+carWrap.addEventListener('mouseenter', stopAuto);
+carWrap.addEventListener('mouseleave', startAuto);
+
+// swipe
+let touchX = 0;
+carWrap.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive:true });
+carWrap.addEventListener('touchend',   e => {
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (Math.abs(dx) > 40) dx < 0 ? next() : prev();
+});
+
+window.addEventListener('resize', () => goTo(current));
+
+// polaroids abrem lightbox
+document.querySelectorAll('.polaroid-c').forEach(p => {
+  p.addEventListener('click', () => openLB(p.querySelector('img').src));
+});
+
+startAuto();
+
+// ── LIGHTBOX ──────────────────────
+function openLB(src) {
+  document.getElementById('lb-img').src = src;
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lb').addEventListener('click', function(e) { if(e.target===this) closeLB(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLB(); });
+</script>
+
+
+<!-- YouTube IFrame API -->
+<script src="https://www.youtube.com/iframe_api"></script>
+<script>
+var ytPlayer;
+var isMuted = true;
+
+// Chamado automaticamente pela API quando carrega
+function onYouTubeIframeAPIReady() {
+  ytPlayer = new YT.Player('yt-player', {
+    videoId: 'JSUgJXq0J9o',
+    playerVars: {
+      autoplay: 1,
+      loop: 1,
+      mute: 1,
+      controls: 0,
+      playlist: 'JSUgJXq0J9o',
+      modestbranding: 1,
+      rel: 0,
+      playsinline: 1,
+      showinfo: 0,
+      iv_load_policy: 3
+    },
+    events: {
+      onReady: function(e) {
+        e.target.mute();
+        e.target.playVideo();
+      }
+    }
+  });
+}
+
+function toggleSound() {
+  if (!ytPlayer) return;
+  const btn   = document.getElementById('sound-btn');
+  const icon  = document.getElementById('sound-icon');
+  const label = document.getElementById('sound-label');
+
+  if (isMuted) {
+    ytPlayer.unMute();
+    ytPlayer.setVolume(80);
+    isMuted = false;
+    icon.textContent  = '🔊';
+    label.textContent = 'silenciar';
+    btn.classList.add('unmuted');
+  } else {
+    ytPlayer.mute();
+    isMuted = true;
+    icon.textContent  = '🔇';
+    label.textContent = 'ativar som';
+    btn.classList.remove('unmuted');
+  }
+}
+</script>
+
+</body>
+</html>
